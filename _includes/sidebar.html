@@ -43,10 +43,11 @@
 <!--				<span class="name">{{ category | first }}</span>-->
 <!--				<span class="badge">{{ category | last | size }}</span>-->
 <!--	    	</a>-->
-			<a class="nav-item" href="{{ root_url }}/{{ site.category_dir }}#{{ category | first | slugify }}">
+			<a class="nav-item" href="{{ root_url }}/{{ site.category_dir }}#{{ category | first | uri_escape }}">
 				<span class="name">{{ category | first }}</span>
 				<span class="badge">{{ category | last | size }}</span>
 			</a>
+
 
 		</li>
 	    {% endfor %}
