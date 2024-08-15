@@ -25,12 +25,38 @@
 </article>
 
 <script src="/public/js/jquery-3.4.1.slim.min.js"></script>
+<!--<script>-->
+<!--	function removeCategory() {-->
+<!--		if (window.location.hash) {-->
+<!--			let hash = window.location.hash.substring(1);-->
+<!--			$('#category-name').text(hash.substring(0, 1).toUpperCase() + hash.substring(1));-->
+<!--			let category_class = '.post-category-' + hash;-->
+<!--			let items = $('.post-list-item').each((i, e) => {-->
+<!--				if (!$(e).hasClass('post-category-' + hash)) {-->
+<!--					$(e).hide();-->
+<!--				} else {-->
+<!--					$(e).show();-->
+<!--				}-->
+<!--			});-->
+<!--		}-->
+<!--	}-->
+<!--	$(window).on('hashchange', () => {-->
+<!--		removeCategory();-->
+<!--	});-->
+<!--	$(document).ready(() => {-->
+<!--		removeCategory();	-->
+<!--	})-->
+<!--	-->
+<!--</script>-->
 <script>
 	function removeCategory() {
 		if (window.location.hash) {
-			let hash = window.location.hash.substring(1);
+			// 해시 값을 디코딩하여 한글이 제대로 나타나도록 처리
+			let hash = decodeURIComponent(window.location.hash.substring(1));
 			$('#category-name').text(hash.substring(0, 1).toUpperCase() + hash.substring(1));
 			let category_class = '.post-category-' + hash;
+
+			// 카테고리와 매칭되지 않는 아이템을 숨기고, 매칭되는 아이템만 표시
 			let items = $('.post-list-item').each((i, e) => {
 				if (!$(e).hasClass('post-category-' + hash)) {
 					$(e).hide();
@@ -40,11 +66,12 @@
 			});
 		}
 	}
+	// 해시 값이 변경될 때 이벤트 리스너
 	$(window).on('hashchange', () => {
 		removeCategory();
 	});
+	// 문서가 로드될 때 초기 호출
 	$(document).ready(() => {
-		removeCategory();	
-	})
-	
+		removeCategory();
+	});
 </script>
